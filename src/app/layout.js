@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
 import { Inter } from "next/font/google";
 import IconButton from "@mui/material/IconButton";
 import { ShoppingBag } from "react-feather";
 import { useRouter } from "next/navigation";
 import { Grid2 as Grid } from "@mui/material";
+import './globals.css';  // Asegúrate de importar el archivo global de estilos.
 
 const inter = Inter({
   variable: "--font-inter",
@@ -18,31 +18,31 @@ export default function RootLayout({ children }) {
 
   useEffect(() => {
     // localStorage is not available on the server for the first render
-    // so needs to be placed inside useEffect to run safely on the client
     setCart(JSON.parse(localStorage.getItem("cart")));
   }, []);
 
   return (
     <html lang="en">
-      <head>
-        <style>
-          {`
-            body {
-              font-family: var(--font-inter), sans-serif;
-            }
-          `}
-        </style>
-      </head>
-      <body className={`${inter.variable}`}>
+      <body style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
         <Grid
           container
           direction="row"
           sx={{
             justifyContent: "space-between",
             alignItems: "baseline",
+            padding: "20px", 
           }}
         >
-          <b>MBST</b>
+          <b
+            style={{
+              fontSize: "36px", 
+              fontWeight: "bold", 
+              color: "#2E3B55", 
+              textShadow: "2px 2px 6px rgba(0, 0, 0, 0.1)", 
+            }}
+          >
+            MBST
+          </b>
 
           <Grid
             container

@@ -106,14 +106,20 @@ export default function PhoneDetailsPage() {
         sx={{
           justifyContent: "space-evenly",
           alignItems: "center",
-          paddingTop: "200px",
+          paddingTop: "100px",
         }}
         columns={{ xs: 2 }}
       >
         <Grid>
           <img
             src={selectedColorOption.imageUrl}
-            alt="Grapefruit slice atop a pile of other slices"
+            alt="Phone Image"
+            style={{
+              width: "550px", // Tamaño ajustado de la imagen
+              height: "550px", // Mantener proporciones
+              objectFit: "contain", // No distorsionar la imagen
+              transition: "all 0.3s ease", // Transición suave para el hover
+            }}
           />
         </Grid>
         <Grid>
@@ -152,6 +158,11 @@ export default function PhoneDetailsPage() {
                 onMouseEnter={() => handleHoverColorOption(colorOption)}
                 onMouseLeave={handleMouseLeaveColorOption}
                 value={colorOption}
+                sx={{
+                  border: "1px solid #ccc",
+                  padding: "5px",
+                  margin: "2px",
+                }}
               >
                 <div
                   style={{

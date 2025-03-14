@@ -1,0 +1,25 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    text-transform: uppercase; 
+    font-size: 14px; 
+    margin-left: 80px; 
+    margin-right: 80px; 
+  }
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInAnimation 0.5s ease-in-out forwards;
+  }
+  
+  @keyframes fadeInAnimation {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
