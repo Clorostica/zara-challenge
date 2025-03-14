@@ -130,7 +130,7 @@ export default function PhoneDetailsPage() {
             aria-label="Platform"
           >
             {phone.storageOptions.map((storageOption, index) => (
-              <ToggleButton value={storageOption}>
+              <ToggleButton key={index} value={storageOption}>
                 {`${storageOption.capacity}`}
               </ToggleButton>
             ))}
@@ -148,6 +148,7 @@ export default function PhoneDetailsPage() {
           >
             {phone.colorOptions.map((colorOption) => (
               <ToggleButton
+                key={colorOption.name}
                 onMouseEnter={() => handleHoverColorOption(colorOption)}
                 onMouseLeave={handleMouseLeaveColorOption}
                 value={colorOption}

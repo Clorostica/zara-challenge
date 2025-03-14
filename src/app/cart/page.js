@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid2";
 import Button from "@mui/material/Button";
 import { useRouter } from "next/navigation";
@@ -22,7 +22,13 @@ const ContinueShoppingButton = styled(Button)({
 
 export default function Cart() {
   const router = useRouter();
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")));
+  const [cart, setCart] = useState();
+
+  useEffect(() => {
+    // localStorage is not available on the server for the first render
+    // so needs to be placed inside useEffect to run safely on the client
+    setCart(JSON.parse(localStorage.getItem("cart")));
+  }, []);
 
   const handleRemoveFromCart = (phone) => {
     const newCart = cart.filter((item) => item !== phone);
