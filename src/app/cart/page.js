@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { styled } from "@mui/system";
 
 const ContinueShoppingButton = styled(Button)({
-  backgroundColor: "#FFFFF",
+  backgroundColor: "#FFFFFF",
   color: "black",
   padding: "10px 20px",
   width: 260,
@@ -16,10 +16,13 @@ const ContinueShoppingButton = styled(Button)({
   border: "1px solid black",
   position: "relative",
   overflow: "hidden",
-  transition: "color 0.4s ease", 
+  transition: "all 0.3s ease",
+
   "&:hover": {
     color: "white",
+    backgroundColor: "#000000",
   },
+
   "&::before": {
     content: '""',
     position: "absolute",
@@ -27,9 +30,10 @@ const ContinueShoppingButton = styled(Button)({
     left: "0",
     width: "100%",
     height: "100%",
-    backgroundColor: "#000000", 
-    transition: "top 0.3s ease", 
+    transition: "top 0.3s ease",
   },
+
+
   "&:hover::before": {
     top: "0", 
   },
@@ -37,9 +41,9 @@ const ContinueShoppingButton = styled(Button)({
 
 const PhoneCard = styled(Grid)({
   "&:hover": {
-    transform: "scale(1.05)", // Hace la tarjeta un poco más grande
-    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // Agrega una sombra
-    transition: "transform 0.3s ease, box-shadow 0.3s ease", // Transición suave
+    transform: "scale(1.05)",
+    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+    transition: "transform 0.3s ease, box-shadow 0.3s ease",
   },
 });
 
@@ -48,15 +52,14 @@ export default function Cart() {
   const [cart, setCart] = useState();
 
   useEffect(() => {
-    // localStorage is not available on the server for the first render
-    // so needs to be placed inside useEffect to run safely on the client
+
     setCart(JSON.parse(localStorage.getItem("cart")));
   }, []);
 
   const handleRemoveFromCart = (phone) => {
     const newCart = cart.filter((item) => item !== phone);
     localStorage.setItem("cart", JSON.stringify(newCart));
-    setCart(newCart); // Update the state to trigger a re-render
+    setCart(newCart); 
   };
 
   if (!cart) {
@@ -69,12 +72,12 @@ export default function Cart() {
       <Grid
         container
         sx={{
-          paddingBottom: "320px", 
+          paddingBottom: "320px",
         }}
       >
         {cart.map((phone) => (
           <PhoneCard
-            key={phone.id} 
+            key={phone.id}
             container
             direction="row"
             sx={{
@@ -89,7 +92,11 @@ export default function Cart() {
               <img
                 src={phone.imageUrl}
                 alt={phone.name}
-                style={{ maxWidth: "150px", maxHeight: "150px", transition: "transform 0.3s ease" }}
+                style={{
+                  maxWidth: "150px",
+                  maxHeight: "150px",
+                  transition: "transform 0.3s ease",
+                }}
               />
             </Grid>
             <Grid>
@@ -98,7 +105,7 @@ export default function Cart() {
                   fontSize: "12px",
                   color: "#6e6e6e",
                   textTransform: "uppercase",
-                  transition: "color 0.3s ease", 
+                  transition: "color 0.3s ease",
                 }}
               >
                 {phone.name}
@@ -128,10 +135,16 @@ export default function Cart() {
                 onClick={() => handleRemoveFromCart(phone)}
                 sx={{
                   "&:hover": {
-                    backgroundColor: "#ff6961", 
-                    transform: "scale(1.1)", 
+                    backgroundColor: "#ff6961",
+                    transform: "translateY(-3px)",
+                    boxShadow: "0 8px 15px rgba(0, 0, 0, 0.15)",
                     transition: "all 0.3s ease",
                   },
+                  "&:active": {
+                    transform: "translateY(0)",
+                    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+                  },
+                  textTransform: "uppercase",
                 }}
               >
                 Eliminar
@@ -161,8 +174,8 @@ export default function Cart() {
           container
           direction="row"
           sx={{
-            justifyContent: "flex-end", 
-            alignItems: "center", 
+            justifyContent: "flex-end",
+            alignItems: "center",
           }}
         >
           <div
@@ -171,7 +184,7 @@ export default function Cart() {
               paddingRight: "30px",
               fontSize: "14px",
               textTransform: "uppercase",
-              marginRight: "10px", 
+              marginRight: "10px",
             }}
           >
             TOTAL {cart.reduce((acc, item) => acc + item.price, 0)} EUR
@@ -188,8 +201,8 @@ export default function Cart() {
               backgroundColor: "black",
               color: "white",
               "&:hover": {
-                backgroundColor: "#333333", 
-                transform: "scale(1.05)", 
+                backgroundColor: "#333333",
+                transform: "scale(1.05)",
                 transition: "transform 0.3s ease, background-color 0.3s ease",
                 color: "white",
               },

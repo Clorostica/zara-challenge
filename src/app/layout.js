@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import { ShoppingBag } from "react-feather";
 import { useRouter } from "next/navigation";
 import { Grid2 as Grid } from "@mui/material";
-import './globals.css';  // Asegúrate de importar el archivo global de estilos.
+import './globals.css';  
 
 const inter = Inter({
   variable: "--font-inter",

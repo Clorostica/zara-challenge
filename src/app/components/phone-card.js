@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
@@ -15,11 +14,10 @@ const StyledCard = styled(Card)({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  padding: "40px",
-
-  transition: "transform 2,3s ease-in-out",
+  padding: "34px",
+  transition: "transform 0.3s ease-in-out",
   "&:hover": {
-    transform: "scale(1)",
+    transform: "scale(1.05)",
   },
 
   "&::before": {
@@ -29,12 +27,12 @@ const StyledCard = styled(Card)({
     left: 0,
     width: "100%",
     height: "0%",
-    backgroundColor: "rgba(0, 0, 0, 1)", 
-    transition: "height 0.7s ease-in-out", 
-    zIndex: 0, 
+    backgroundColor: "rgba(0, 0, 0, 1)",
+    transition: "height 0.7s ease-in-out",
+    zIndex: 0,
   },
   "&:hover::before": {
-    height: "100%", 
+    height: "100%",
   },
 });
 
@@ -43,12 +41,12 @@ const ContentWrapper = styled(Box)({
   padding: "12px",
   textAlign: "center",
   position: "relative",
-  zIndex: 2, 
+  zIndex: 2,
 });
 
 export default function PhoneCard({ phone }) {
   const [textColor, setTextColor] = useState("#000");
-  const [brandColor, setBrandColor] = useState("#888"); 
+  const [brandColor, setBrandColor] = useState("#888");
   const router = useRouter();
 
   return (
@@ -56,45 +54,55 @@ export default function PhoneCard({ phone }) {
       <StyledCard
         onMouseEnter={() => {
           setTextColor("#FFF");
-          setBrandColor("#FFF"); 
+          setBrandColor("#FFF");
         }}
         onMouseLeave={() => {
           setTextColor("#000");
-          setBrandColor("#888"); 
+          setBrandColor("#888");
         }}
         variant="outlined"
         onClick={() => router.push(`/phone/${phone.id}`)}
       >
-
-        <Box
+        <Grid
+          container
           sx={{
             width: "100%",
             position: "relative",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 2, 
             height: 0,
-            paddingBottom: "100%", 
+            paddingBottom: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 2,
+            "@media (max-width: 600px)": {
+              paddingBottom: "150%",
+            },
           }}
         >
-          <Image
-            src={phone.imageUrl}
-            layout="fill" 
-            objectFit="contain" 
-            alt="Phone Image"
-          />
-        </Box>
+          <Grid item xs={12}>
+            <img
+              src={phone.imageUrl}
+              alt="Phone Image"
+              style={{
+                objectFit: "contain",
+                width: "100%",
+                height: "auto",
+                maxWidth: "80%",
+                margin: "0 auto",
+                display: "block",
+              }}
+            />
+          </Grid>
+        </Grid>
 
         <ContentWrapper>
           <Typography
             sx={{
-              fontSize: "12px",
-              color: brandColor, 
+              fontSize: "10px",
+              color: brandColor,
               textTransform: "uppercase",
               fontWeight: "500",
-              textAlign: "left", 
-              marginBottom: "8px", 
+              textAlign: "left",
+              marginBottom: "8px",
             }}
           >
             {phone.brand}
@@ -104,7 +112,7 @@ export default function PhoneCard({ phone }) {
             <Grid item>
               <Typography
                 sx={{
-                  fontSize: "14px",
+                  fontSize: "11px",
                   color: textColor,
                 }}
               >
@@ -115,7 +123,7 @@ export default function PhoneCard({ phone }) {
             <Grid item>
               <Typography
                 sx={{
-                  fontSize: "14px",
+                  fontSize: "11px",
                   color: textColor,
                 }}
               >

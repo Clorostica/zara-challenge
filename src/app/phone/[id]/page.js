@@ -115,10 +115,11 @@ export default function PhoneDetailsPage() {
             src={selectedColorOption.imageUrl}
             alt="Phone Image"
             style={{
-              width: "550px", // Tamaño ajustado de la imagen
-              height: "550px", // Mantener proporciones
-              objectFit: "contain", // No distorsionar la imagen
-              transition: "all 0.3s ease", // Transición suave para el hover
+              width: "100%",
+              maxWidth: "550px",
+              height: "auto",
+              objectFit: "contain",
+              transition: "all 0.3s ease",
             }}
           />
         </Grid>
