@@ -1,7 +1,7 @@
 # Aplicación de Tienda Móvil
 
 ![Imagen](appdetelefonos.png)
-![Imagen](appdetelefono2)
+![Imagen](appdetelefono2.png)
 
 
 Esta aplicación permite a los usuarios explorar modelos de teléfonos móviles, ver detalles como color y capacidad de almacenamiento, y agregar productos al carrito de compras. Está construida con **Next.js** y **Material UI**.
